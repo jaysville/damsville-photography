@@ -24,7 +24,6 @@ const Style = styled.div`
   height: 770px;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(0.1px);
 
   @media (max-width: 650px) {
     background-position: center;
