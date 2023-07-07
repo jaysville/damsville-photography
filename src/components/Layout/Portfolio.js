@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import LandingImg from "../../assets/landing.jpg";
 import Img1 from "../../assets/img1.jpg";
 import Img2 from "../../assets/img2.jpg";
 import Img3 from "../../assets/img3.jpg";
@@ -13,13 +12,12 @@ const Portfolio = () => {
       <div>
         <div>
           <img src={Img1} alt="sample" className="img-fluid" />
-          <img src={Img2} className="img-fluid" />
-          <img src={Img3} className="img-fluid" />
+          <img src={Img2} className="img-fluid" alt="sample" />
+          <img src={Img3} className="img-fluid" alt="sample" />
         </div>
         <div>
-          <img src={LandingImg} alt="sample" className="img-fluid" />
-          <img src={Img4} className="img-fluid" />
-          <img src={Img5} className="img-fluid" />
+          <img src={Img4} className="img-fluid" alt="sample" />
+          <img src={Img5} className="img-fluid" alt="sample" />
         </div>
       </div>
     </Style>
