@@ -8,9 +8,16 @@ const Footer = () => {
     <Style>
       <h3>Damsville Photography</h3>
       <div>
-        <InstagramIcon />
-        <FacebookIcon />
-        <EmailIcon />
+        <a href="https://www.instagram.com/damsvillephotography/">
+          <InstagramIcon />
+        </a>
+
+        <a href="/">
+          <FacebookIcon />
+        </a>
+        <a href="mailto:damilolaabby@gmail.com">
+          <EmailIcon />
+        </a>
       </div>
       <br />
       <p>Crewe, Cheshire UK</p>

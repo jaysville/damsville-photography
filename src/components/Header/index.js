@@ -4,24 +4,49 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import EmailIcon from "@mui/icons-material/Email";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Header = (props) => {
+  const [activeLink, setActiveLink] = useState("");
+  const location = useLocation();
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
   return (
     <HeaderStyle>
       <img src={Logo} alt="logo" />
       <nav>
         <ul>
-          <li>Home</li>
-          <li>About Me</li>
-          <li>Portfolio</li>
-          <li>Contact Us</li>
+          {Links.map(({ name, path }) => {
+            return (
+              <Link to={path}>
+                <NavLink
+                  onClick={() => {
+                    setActiveLink(path);
+                  }}
+                  key={name}
+                  active={activeLink === path}
+                >
+                  {name}
+                </NavLink>
+              </Link>
+            );
+          })}
         </ul>
       </nav>
 
       <div>
-        <InstagramIcon />
-        <FacebookIcon />
-        <EmailIcon />
+        <a href="https://www.instagram.com/damsvillephotography/">
+          <InstagramIcon />
+        </a>
+
+        <a href="/">
+          <FacebookIcon />
+        </a>
+        <a href="mailto:damilolaabby@gmail.com">
+          <EmailIcon />
+        </a>
       </div>
       <i className="me-3" onClick={props.onToggleSideNav}>
         <MenuIcon />
@@ -32,10 +57,25 @@ const Header = (props) => {
 
 export default Header;
 
+export const Links = [
+  { name: "Home", path: "/" },
+  { name: "About Me", path: "/about" },
+  { name: "Portfolio", path: "/portfolio" },
+  { name: "Contact Us", path: "/contact" },
+];
+
 const HeaderStyle = styled.header`
+  position: absolute;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  background-color: transparent;
+  width: 100%;
+  top: 0;
+
+  z-index: 500;
+  a {
+    text-decoration: none;
+  }
   div {
     transform: translateY(30px);
     svg {
@@ -86,14 +126,18 @@ const HeaderStyle = styled.header`
       font-size: 15px;
     }
     padding-inline-start: 0;
-    li {
-      margin: 15px;
-      color: white;
-      transition: all 200ms ease-in-out;
-      cursor: pointer;
-      &:hover {
-        color: #6b323c;
-      }
-    }
   }
+`;
+
+const NavLink = styled.li`
+  margin: 15px;
+  color: white;
+
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    color: #6b323c;
+    transition: all 200ms ease-in-out;
+  }
+  color: ${(props) => props.active && "#6b323c"};
 `;

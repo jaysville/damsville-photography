@@ -6,20 +6,45 @@ import Img3 from "../../assets/img3.jpg";
 import Img4 from "../../assets/img4.jpg";
 import Img5 from "../../assets/img5.png";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+
+// import required modules
+import { EffectCoverflow, Pagination } from "swiper/modules";
+
 const Portfolio = () => {
+  const itemData = [Img1, Img2, Img3, Img4, Img5];
   return (
     <Style>
-      <div>
-        <div>
-          <img src={Img1} alt="sample" className="img-fluid" />
-          <img src={Img2} className="img-fluid" alt="sample" />
-          <img src={Img3} className="img-fluid" alt="sample" />
-        </div>
-        <div>
-          <img src={Img4} className="img-fluid" alt="sample" />
-          <img src={Img5} className="img-fluid" alt="sample" />
-        </div>
-      </div>
+      <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={"auto"}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
+        pagination={true}
+        modules={[EffectCoverflow, Pagination]}
+        className="mySwiper"
+      >
+        {itemData.map((item) => {
+          return (
+            <SwiperSlide>
+              <img src={item} className="img-fluid" alt="banner" />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </Style>
   );
 };
@@ -28,9 +53,7 @@ export default Portfolio;
 
 const Style = styled.section`
   display: flex;
+  background-color: #f8f3e0;
   flex-direction: column;
   align-items: center;
-  img {
-    width: 3000px;
-  }
 `;

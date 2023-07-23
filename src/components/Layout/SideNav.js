@@ -4,6 +4,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import EmailIcon from "@mui/icons-material/Email";
 import CloseIcon from "@mui/icons-material/Close";
 import { Button } from "../UI/Button";
+import { Link } from "react-router-dom";
+import { Links } from "../Header";
 
 const SideNav = (props) => {
   return (
@@ -12,16 +14,30 @@ const SideNav = (props) => {
         <CloseIcon />
       </i>
       <ul>
-        <li>Home</li>
-        <li>Portfolio</li>
-        <li>About Me</li>
-        <li>Contact</li>
+        {Links.map(({ name, path }) => {
+          return (
+            <Link key={path} to={path}>
+              <li>{name}</li>
+            </Link>
+          );
+        })}
       </ul>
       <div>
-        <InstagramIcon /> <FacebookIcon /> <EmailIcon />
+        <a href="https://www.instagram.com/damsvillephotography/">
+          <InstagramIcon />
+        </a>
+
+        <a href="/">
+          <FacebookIcon />
+        </a>
+        <a href="mailto:damilolaabby@gmail.com">
+          <EmailIcon />
+        </a>
       </div>
       <div className="mt-5">
-        <Button sideNav={true}>Book Now</Button>
+        <Link to="/contact">
+          <Button sideNav={true}>Book Now</Button>
+        </Link>
       </div>
     </Style>
   );
@@ -49,6 +65,9 @@ const Style = styled.div`
       font-size: 35px;
       cursor: pointer;
     }
+  }
+  a {
+    color: black;
   }
   ul {
     padding-inline-start: 0;
